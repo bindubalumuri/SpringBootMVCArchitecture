@@ -42,13 +42,13 @@ public class ProductController {
 	 
    
    @PostMapping("/saveproduct")
-   public String saveProductData(@Valid @ModelAttribute ProductModel product,BindingResult bindingResult)
+   public String saveProductData(@Valid @ModelAttribute ProductModel productModel,BindingResult bindingResult)
    {
 	   if(bindingResult.hasErrors())
 	   {
 		   return "add-product";
 	   }
-	   productService.saveProductData(product);
+	   productService.saveProductData(productModel);
 	   return "Success";
    }
    
@@ -91,8 +91,8 @@ public class ProductController {
    
    @GetMapping("/editProduct/{id}")
    public String editProductForm(@PathVariable Long id, Model model) {
-       ProductModel productModel = productService.getEditProduct(id);
-       model.addAttribute("productModel", productModel); // Changed to 'productModel'
+       ProductModel product = productService.getEditProduct(id);
+       model.addAttribute("product", product); // Changed to 'productModel'
        model.addAttribute("id", id);
        return "edit-Product";
    }
@@ -110,8 +110,10 @@ public class ProductController {
    }
    
    @PostMapping("/updateProduct/{id}")
-   public String updateProduct(@PathVariable Long id, @ModelAttribute ProductModel productModel) {
-       productService.updateProduct(id, productModel);
+   
+   public String updateProduct(@PathVariable Long id, @ModelAttribute ProductModel product) {
+	   System.out.println("updateprodct");
+       productService.updateProduct(id, product);
        return "redirect:/getAllProducts";
    }
 

@@ -7,15 +7,12 @@
 <body>
 <div class="container mt-5">
     <h2>Edit Product</h2>
-	<form  th:action="@{/updateProduct/{id}  (id=${productModel.id})}" th:object="${productModel}" method="post">
-		<!--<form th:action="@{/updateProduct/)}" th:object="${productModel}" method="post">-->
-                <!-- <input type=""hidden" th:value="*{id}"/>-->
+		<form th:action="@{/updateProduct/{id}(id=${id})}" th:object="${product}" method="post">
 
-				 
 				 <div class="mb-3">
-				             <label class="form-label">Id</label>
-				             <input type="text" th:value="${id}" class="form-control" required/>
-				         </div>
+				       <label class="form-label">Id</label>
+				       <input type="text" th:value="${id}" class="form-control" disabled/>
+				  </div>
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input type="text" th:field="*{name}" class="form-control" required/>

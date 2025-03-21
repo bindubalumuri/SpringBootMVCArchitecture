@@ -58,12 +58,8 @@ public class ProductService {
 
 	public void updateProduct(Long id, ProductModel productModel) {
 	    ProductEntity productEntity = productRepository.findById(id).orElse(null);
-
-	    if (productEntity != null) {
-	        // Update basic fields
-		//Optional<ProductEntity> optionalProduct = productRepository.findById(id);
-             //if (optionalProduct.isPresent()) {
-		       // ProductEntity product = optionalProduct.get();
+               if (productEntity != null) {
+	   
 	        productEntity.setName(productModel.getName());
 	        productEntity.setBrand(productModel.getBrand());
 	        productEntity.setPrice(productModel.getPrice());
@@ -77,8 +73,6 @@ public class ProductService {
 	        productEntity.setTotalAmount(totalAmount);
 	        productEntity.setTaxAmount(tax);
 	        productEntity.setEmail(productModel.getEmail());
-            //System.out.println(productModel.getEmail());
-	        // Optional: audit info
 	        productEntity.setCreatedAt(LocalDateTime.now());
 	        productEntity.setCreatedBy(System.getProperty("user.name"));
 
@@ -87,12 +81,9 @@ public class ProductService {
 	    }
 	    else {
 	        System.out.println("Product not found with ID: " + id);
-	        // Optional: throw exception or handle error
-	    	//else {
-	            //throw new RuntimeException("Product with ID " + id + " not found.");
 	        }
 	    }
-	///}
+	
 
 	public ProductEntity getProductByEmail(String email) {
 	    return productRepository.findByEmail(email);
@@ -101,7 +92,7 @@ public class ProductService {
 	public ProductModel getEditProduct(Long id) {
 		ProductEntity productEntity = productRepository.findById(id).orElse(null);
 		ProductModel productModel = new ProductModel();
-		//productModel.setId(productEntity.getId());
+		
 		productModel.setName(productEntity.getName());
 		productModel.setPrice(productEntity.getPrice());
 		productModel.setQuantity(productEntity.getQuantity());
