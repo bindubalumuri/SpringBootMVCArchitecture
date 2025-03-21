@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Form</title>
+</head>
+<body>
+    <h2>Enter Product Details</h2>
+
+    <form th:action="@{/saveproduct}" th:object="${productModel}" method="post">
+        
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" /><br/>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red" ></div>
+        <br/>
+
+        <label>Price:</label>
+        <input type="number" step="0.01" th:field="*{price}" /><br/>
+        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red"></div>
+        <br/>
+
+        <label>Quantity:</label>
+        <input type="number" th:field="*{quantity}" /><br/>
+        <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" style="color:red"></div>
+        <br/>
+
+        <label>Brand:</label>
+        <input type="text" th:field="*{brand}" /><br/>
+        <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" style="color:red"></div>
+        <br/>
+
+        <label>Made In:</label>
+        <input type="text" th:field="*{madein}" /><br/>
+        <div th:if="${#fields.hasErrors('madein')}" th:errors="*{madein}" style="color:red"></div>
+        <br/>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" /><br/>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></div>
+        <br/>
+
+        <button type="submit">Submit</button>
+        <a th:href="@{/getAllProducts}">View Products</a>
+
+    </form>
+</body>
+</html>
